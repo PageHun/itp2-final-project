@@ -7,3 +7,13 @@ def log_action(func):
         print(f"[LOG] Выполнение операции: {func.__name__}...")
         return func(*args, **kwargs)
     return wrapper
+class User:
+    def init(self, username: str):
+        self._username = username
+
+    @property
+    def username(self) -> str:
+        return self._username
+
+    def get_monthly_limit(self) -> float:
+        return 50000.0
