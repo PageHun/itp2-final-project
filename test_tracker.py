@@ -8,3 +8,7 @@ class TestFinanceTracker(unittest.TestCase):
         self.test_file = "test_data.json"
         self.user = User("TestUser")
         self.tracker = FinanceTracker(self.user, file_path=self.test_file)
+
+    def tearDown(self):
+        if os.path.exists(self.test_file):
+            os.remove(self.test_file)
