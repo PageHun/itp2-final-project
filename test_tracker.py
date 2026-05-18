@@ -16,3 +16,9 @@ class TestFinanceTracker(unittest.TestCase):
         self.tracker.add_transaction(IncomeTransaction(100, "2026-05-01"))
         self.tracker.add_transaction(ExpenseTransaction(30, "2026-05-01", "food"))
         self.assertEqual(self.tracker.get_balance(), 70)
+    def test_invalid_transaction_amount(self):
+        with self.assertRaises(ValueError):
+            IncomeTransaction(-50, "2026-05-01")
+
+if __name__ == "__main__":
+    unittest.main()
