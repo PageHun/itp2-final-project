@@ -12,3 +12,7 @@ class TestFinanceTracker(unittest.TestCase):
     def tearDown(self):
         if os.path.exists(self.test_file):
             os.remove(self.test_file)
+    def test_balance_calculation(self):
+        self.tracker.add_transaction(IncomeTransaction(100, "2026-05-01"))
+        self.tracker.add_transaction(ExpenseTransaction(30, "2026-05-01", "food"))
+        self.assertEqual(self.tracker.get_balance(), 70)
