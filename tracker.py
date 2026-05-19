@@ -55,3 +55,20 @@ class FinanceTracker:
                 json.dump(data, f, ensure_ascii=False, indent=4)
         except IOError as e:
             print(f"Ошибка сохранения файла: {e}")
+
+    def load_from_file(self) -> None:
+        if not os.path.exists(self.file_path):
+            return
+        try:
+            with open(self.file_path, 'r', encoding='utf-8') as f:
+                raw_data = json.load(f)
+                self.transactions = []
+                for item in raw_data:
+                    if item.get("type") == "income":
+                        self.transactions.append(IncomeTransaction(item["amount"], item["date"]))
+                    elif item.get("type") == "expense":
+                        self.transactions.append(ExpenseTransaction(
+                            item["amount"], item["date"], item["category"]
+                        ))
+        except (json.JSONDecodeError, KeyError, ValueError):
+            self.transactions = []
