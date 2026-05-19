@@ -25,3 +25,14 @@ class PremiumUser(User):
 
     def get_monthly_limit(self) -> float:
         return self.extra_limit
+
+class Transaction(ABC):
+    def init(self, amount: float, date: str):
+        if amount <= 0:
+            raise ValueError("Сумма должна быть больше нуля.")
+        self.amount = amount
+        self.date = date
+
+    @abstractmethod
+    def to_dict(self) -> dict:
+        pass
