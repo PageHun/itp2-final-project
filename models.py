@@ -17,3 +17,11 @@ class User:
 
     def get_monthly_limit(self) -> float:
         return 50000.0
+        
+class PremiumUser(User):
+    def init(self, username: str, extra_limit: float = 100000.0):
+        super().init(username)
+        self.extra_limit = extra_limit
+
+    def get_monthly_limit(self) -> float:
+        return self.extra_limit
