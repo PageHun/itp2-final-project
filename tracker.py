@@ -30,3 +30,19 @@ class FinanceTracker:
     def get_total_expenses(self) -> float:
         expenses = filter(lambda tx: isinstance(tx, ExpenseTransaction), self.transactions)
         return sum(tx.amount for tx in expenses)
+
+    def get_total_income(self) -> float:
+        incomes = filter(lambda tx: isinstance(tx, IncomeTransaction), self.transactions)
+        return sum(tx.amount for tx in incomes)
+
+    def get_balance(self) -> float:
+        return self.get_total_income() - self.get_total_expenses()
+
+    def get_category_breakdown(self) -> Dict[str, float]:
+        breakdown = {}
+        for expense in self.get_expenses_generator():
+            breakdown[expense.category] = breakdown.get(expense.category, 0.0) + expense.amount
+        return breakdown
+
+    def get_unique_categories(self) -> set:
+        return {tx.category for tx in self.transactions if isinstance(tx, ExpenseTransaction)}
