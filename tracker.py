@@ -46,3 +46,12 @@ class FinanceTracker:
 
     def get_unique_categories(self) -> set:
         return {tx.category for tx in self.transactions if isinstance(tx, ExpenseTransaction)}
+
+    @log_action
+    def save_to_file(self) -> None:
+        try:
+            with open(self.file_path, 'w', encoding='utf-8') as f:
+                data = [tx.to_dict() for tx in self.transactions]
+                json.dump(data, f, ensure_ascii=False, indent=4)
+        except IOError as e:
+            print(f"Ошибка сохранения файла: {e}")
