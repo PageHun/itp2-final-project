@@ -15,3 +15,10 @@ def main():
         print(f"Ошибка: {e}")
 
     tracker.save_to_file()
+
+    print(f"Текущий баланс: {tracker.get_balance()}")
+    print(f"Общий доход: {tracker.get_total_income()}")
+    print(f"Общий расход: {tracker.get_total_expenses()}")
+    
+    print(tracker.get_category_breakdown())
+    print(tracker.get_unique_categories())
