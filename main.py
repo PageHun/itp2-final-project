@@ -22,3 +22,6 @@ def main():
     
     print(tracker.get_category_breakdown())
     print(tracker.get_unique_categories())
+
+if __name__ == "__main__":
+    main()
