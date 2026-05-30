@@ -25,3 +25,6 @@ class PremiumUser(User):
     def __init__(self, username: str, extra_limit: float = 100000.0):
         super().__init__(username)
         self.extra_limit = extra_limit
+
+    def get_monthly_limit(self) -> float:
+        return self.extra_limit
