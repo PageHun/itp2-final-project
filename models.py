@@ -48,10 +48,18 @@ class IncomeTransaction(Transaction):
             "type": "income",
             "amount": self.amount,
             "date": self.date
-        }class IncomeTransaction(Transaction):
+        }
+
+
+class ExpenseTransaction(Transaction):
+    def __init__(self, amount: float, date: str, category: str):
+        super().__init__(amount, date)
+        self.category = category
+
     def to_dict(self) -> dict:
         return {
-            "type": "income",
+            "type": "expense",
+            "category": self.category,
             "amount": self.amount,
             "date": self.date
         }
