@@ -42,3 +42,16 @@ class Transaction(ABC):
         pass
 
 
+class IncomeTransaction(Transaction):
+    def to_dict(self) -> dict:
+        return {
+            "type": "income",
+            "amount": self.amount,
+            "date": self.date
+        }class IncomeTransaction(Transaction):
+    def to_dict(self) -> dict:
+        return {
+            "type": "income",
+            "amount": self.amount,
+            "date": self.date
+        }
